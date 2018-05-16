@@ -29,7 +29,17 @@ const getInput = player => async () => {
   game.dispatch(move(turn, [row, col]))
 }
 
+const winner = (board) => {
+  let board = board.toJS();
+  //board[0][0]
+  //
+  //runs after each turn
+  //need to check for runs
+    //if the array has all one letter,
+  }
 
+
+  //so, we need to check
 
 // Debug: Print the state
 // game.subscribe(() => console.log(game.getState()))
