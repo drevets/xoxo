@@ -8,13 +8,23 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action) {
-  if (action.type === 'MOVE') {
-    return {
-      board: state.board.setIn(action.position, action.turn),
-      turn: state.turn === 'X' ? 'O' : 'X',
-    };
+  //if action.type === 'WIN...then put that onto state and do something
+  return {
+    board: boardReducer(state.board, action),
+    turn: turnReducer(state.turn, action)
   }
-  return state;
+}
+
+const turnReducer = (turn='X', action) => {
+  if (action.type === 'MOVE') {
+    return turn === 'X' ? 'O' : 'X'
+  }
+  return turn
+}
+
+const boardReducer = (board = Map(), action) => {
+  if (action.type === 'MOVE') return board.setIn(action.position, action.turn)
+  return board
 }
 
 //action creator
